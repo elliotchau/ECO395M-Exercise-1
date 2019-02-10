@@ -3,7 +3,7 @@ title: "PS1 Exercise 1"
 author: "Elliot"
 output: rmarkdown::github_document
 ---
-```{r include = TRUE}
+```{r include = FALSE}
 library (tidyverse)
 
 greenbuildings <- read.csv("greenbuildings.csv")
@@ -21,7 +21,9 @@ n = which(green == 0)
 
 length(g)
 length(n)
- 
+```
+
+```{r include = TRUE}
 #density plots
 dg = density(y[g])
 plot(dg, xlab = "$/sq ft", main = "Density plot of rents for green and non-green apartments", ylim=c(0,.05), col = 'green')
@@ -31,7 +33,9 @@ lines(dn)
 
 labels = c('Green', 'Non-green')
 legend('topright', labels, col = c("green","black"), lty = c(1,1))
+```
 
+```{r include = FALSE}
 #remove low occupancy
 low = which(greenbuildings$leasing_rate < 10)
 high = which(greenbuildings$leasing_rate >= 10)
@@ -48,7 +52,9 @@ length(g)
 length(n)
 
 y = newdata$Rent
+```
 
+```{r include = TRUE}
 #density plots
 dg = density(y[g])
 
@@ -66,7 +72,9 @@ View(res)
 res2 = cbind(res[,5], res[,14])
 colnames(res2) = c("rent", "green")
 View(res2)
+```
 
+```{r include = FALSE}
 #try: age
 age = newdata$age
 rent = newdata$Rent
