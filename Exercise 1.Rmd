@@ -65,7 +65,9 @@ lines(dn)
 
 labels = c('green', 'non-green')
 legend('topright', labels, col = c("green","black"), lty = c(1,1))
+```
 
+```{r include = FALSE}
 res = cor(newdata)
 View(res)
 
@@ -74,7 +76,7 @@ colnames(res2) = c("rent", "green")
 View(res2)
 ```
 
-```{r include = FALSE}
+```{r include = TRUE}
 #try: age
 age = newdata$age
 rent = newdata$Rent

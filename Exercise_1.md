@@ -32,10 +32,50 @@ legend('topright', labels, col = c("green","black"), lty = c(1,1))
 ![](Exercise_1_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
-res = cor(newdata)
-View(res)
+#try: age
+age = newdata$age
+rent = newdata$Rent
+plot(rent ~ age, cex = 0.5)
 
-res2 = cbind(res[,5], res[,14])
-colnames(res2) = c("rent", "green")
-View(res2)
+abline(lm(rent~age), lwd = 2, col = "red")
+```
+
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+``` r
+#try class_a
+class_a = newdata$age
+rent = newdata$Rent
+plot(rent ~ class_a, cex = 0.5)
+
+abline(lm(rent~class_a), lwd = 2, col = "red")
+```
+
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-2.png)
+
+``` r
+#try amenities 
+amenities = newdata$amenities
+rent = newdata$Rent
+plot(rent~amenities, cex = 0.5)
+
+abline(lm(rent~amenities), lwd = 2, col = "red")
+```
+
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-3.png)
+
+``` r
+#amenities is a categorical variable so this plot wasn't useful maybe try finding mean/median
+
+#try leasing rate
+leasing_rate = newdata$leasing_rate
+rent = newdata$Rent
+plot(rent~leasing_rate, cex = 0.5)
+abline(lm(rent~amenities), lwd = 2, col = "red")
+```
+
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-4.png)
+
+``` r
+#this showed a positive relationship but not the most convincing plot
 ```
