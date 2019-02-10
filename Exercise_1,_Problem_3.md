@@ -11,7 +11,7 @@ p_test65AMG = ggplot(data = D_test65AMG) +
 p_test65AMG
 ```
 
-![p_test65amg](https://user-images.githubusercontent.com/47119252/52541395-1094bb00-2d5a-11e9-8e2e-aa2b4c4dcf21.png)
+![p_test65amg](https://user-images.githubusercontent.com/47119252/52541403-328e3d80-2d5a-11e9-843b-5081175cae22.png)
 
 ``` r
 plot_grid(plot65amg.knn3, plot65amg.knn25, plot65amg.knn13, plot65amg.knn50, plot65amg.knn17, plot65amg.knn100,
