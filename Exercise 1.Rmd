@@ -1,5 +1,5 @@
 ---
-title: "PS1 Exercise 1"
+title: "Exercise 1, Problem 1"
 author: "Hana, David, and Elliot"
 output: github_document
 ---

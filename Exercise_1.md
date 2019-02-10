@@ -1,4 +1,4 @@
-PS1 Exercise 1
+Exercise 1, Problem 1
 ================
 Hana, David, and Elliot
 
