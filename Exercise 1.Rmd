@@ -1,7 +1,7 @@
 ---
 title: "PS1 Exercise 1"
-author: "Elliot"
-output: word_document
+author: "Hana, David, and Elliot"
+output: github_document
 ---
 ```{r include = FALSE}
 library (tidyverse)
@@ -23,9 +23,10 @@ length(g)
 length(n)
 ```
 
+
+**Density plot of all buildings**
 ---
-*Density plot of all buildings*
----
+
 ```{r include = TRUE}
 #density plots
 dg = density(y[g])
@@ -57,19 +58,18 @@ length(n)
 y = newdata$Rent
 ```
 
----
-*Low occupancy buildings removed*
+**Low occupancy buildings removed**
 ---
 ```{r include = TRUE}
 #density plots
 dg = density(y[g])
 
-plot(dg, xlab = "rent per sq ft", main = "density plot of rents for green and not green apartments", ylim=c(0,.05), col = 'green')
+plot(dg, xlab = "$/sq ft", main = "Density plot of rents for green and non-green apartments", ylim=c(0,.05), col = 'green')
 
 dn = density(y[n])
 lines(dn)
 
-labels = c('green', 'non-green')
+labels = c('Green', 'Non-green')
 legend('topright', labels, col = c("green","black"), lty = c(1,1))
 
 res = cor(newdata)
@@ -80,9 +80,12 @@ colnames(res2) = c("rent", "green")
 View(res2)
 ```
 
+These two plots look nearly identical.
+
+
+**Various correlation plots between rent and a characteristic**
 ---
-Various correlation plots
----
+
 ```{r include = TRUE}
 #try: age
 age = newdata$age
