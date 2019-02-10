@@ -32,6 +32,15 @@ legend('topright', labels, col = c("green","black"), lty = c(1,1))
 ![](Exercise_1_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
+res = cor(newdata)
+View(res)
+
+res2 = cbind(res[,5], res[,14])
+colnames(res2) = c("rent", "green")
+View(res2)
+```
+
+``` r
 #try: age
 age = newdata$age
 rent = newdata$Rent
@@ -40,7 +49,7 @@ plot(rent ~ age, cex = 0.5)
 abline(lm(rent~age), lwd = 2, col = "red")
 ```
 
-![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 #try class_a
@@ -51,7 +60,7 @@ plot(rent ~ class_a, cex = 0.5)
 abline(lm(rent~class_a), lwd = 2, col = "red")
 ```
 
-![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-2.png)
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-5-2.png)
 
 ``` r
 #try amenities 
@@ -62,7 +71,7 @@ plot(rent~amenities, cex = 0.5)
 abline(lm(rent~amenities), lwd = 2, col = "red")
 ```
 
-![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-3.png)
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-5-3.png)
 
 ``` r
 #amenities is a categorical variable so this plot wasn't useful maybe try finding mean/median
@@ -74,7 +83,7 @@ plot(rent~leasing_rate, cex = 0.5)
 abline(lm(rent~amenities), lwd = 2, col = "red")
 ```
 
-![](Exercise_1_files/figure-markdown_github/unnamed-chunk-6-4.png)
+![](Exercise_1_files/figure-markdown_github/unnamed-chunk-5-4.png)
 
 ``` r
 #this showed a positive relationship but not the most convincing plot
