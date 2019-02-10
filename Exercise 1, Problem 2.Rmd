@@ -1,0 +1,143 @@
+---
+title: "Exercise 1, Problem 2"
+author: "Elliot"
+date: "2/10/2019"
+output: github_document
+---
+
+```{r include=FALSE}
+# Data Visualization: Exercise 1, Question 2
+ABIA <- read.csv("ABIA.csv")
+
+# Load packages
+library(maps)
+library(dplyr)
+library(nycflights13)
+library(geosphere)
+
+# The package 'nycflight13' gives acccess to both the 'airports' dataset
+airports
+# Filter out airports outside of the Continental US by latitude
+usairports <- filter(airports, lat < 48.5)
+# Filter out airports outside of the Continental US by longitude
+usairports <- filter(usairports, lon > -130)
+# Exclude AUS airport from this dataset
+usairports <- filter(usairports, faa!="AUS")
+# Create new dataframe contaning only AUS
+aus <- filter(airports, faa=="AUS")
+```
+
+```{r include=TRUE}
+# Create base map
+basemap <- map("world",
+    regions = c("usa"),
+    fill = T,
+    col = "grey8",
+    bg = "grey15",
+    ylim = c(21.0,50.0),
+    xlim = c(-130.0,-65.0),
+    main = "Map of all Airports in the Continental US")
+
+# Overlay US airports
+airportoverlay <- points(usairports$lon,
+       usairports$lat,
+       pch = 3,
+       cex = 0.1,
+       col = "chocolate1")
+
+# Add flights connected from AUS to all other US airports
+for (i in (1:dim(usairports)[1])) { 
+  inter <- gcIntermediate(c(aus$lon[1], aus$lat[1]), c(usairports$lon[i], usairports$lat[i]), n=200)
+  lines(inter, lwd=0.1, col="turquoise2")    
+}
+
+# Load the 'flights' dataset and 'airports' dataset
+flights <- read.csv("http://datasets.flowingdata.com/tuts/maparcs/flights.csv", header=TRUE, as.is=TRUE)
+airports <- read.csv("http://datasets.flowingdata.com/tuts/maparcs/airports.csv", header=TRUE)
+
+# Create new map with direct flights to and from AUS
+map("world",
+    regions = c("usa"),
+    fill = T,
+    col = "grey8",
+    bg = "grey15",
+    ylim = c(21.0,50.0),
+    xlim = c(-130.0,-65.0),
+    main = "Map of all Direct Flights to and from Austin")
+
+points(usairports$lon,
+       usairports$lat,
+       pch = 3,
+       cex = 0.1,
+       col = "chocolate1")
+
+# Filter out all flights outside of the Continental US that are not directly connected to Austin
+fsub <- flights[flights$airport1 == "AUS",]
+for (j in 1:length(fsub$airport1)) {
+  air1 <- airports[airports$iata == fsub[j,]$airport1,]
+  air2 <- airports[airports$iata == fsub[j,]$airport2,]
+  
+  inter <- gcIntermediate(c(air1[1,]$long, 
+                            air1[1,]$lat), 
+                          c(air2[1,]$long, 
+                            air2[1,]$lat), 
+                          n=100, 
+                          addStartEnd=TRUE)
+  
+  lines(inter, 
+        col="turquoise2",
+        lwd=0.3)
+}
+```
+
+```{r include=FALSE}
+# Filter out Data for flights from Austin
+ABIA
+AusTo <- filter(ABIA, Dest=="AUS")
+
+# Find Mean Arrival Delay Time for all Airpots to Austin
+AusToAD <- AusTo %>%
+  group_by(Origin) %>%
+  summarize(ArrDelayMean = mean(ArrDelay, na.rm = T)) %>%
+  as.data.frame()
+
+# Load the 'tidyverse' package
+library(tidyverse)
+
+theme_set(theme_bw())
+```
+
+```{r include=TRUE}
+# Graph Mean Delay for flights to Austin
+ggplot(AusToAD, aes(x = Origin, y = ArrDelayMean, label = ArrDelayMean)) +
+  geom_bar(stat = 'identity', aes(fill = ArrDelayMean, x = reorder(Origin, ArrDelayMean)), width = .8) +
+  coord_flip() +
+  scale_fill_gradient(low="green", high="red") +
+  theme(text = element_text(size=10)) +
+  labs(title = "Average Flight Delay for Flights into AUS") 
+```
+
+```{r include=FALSE}
+# Filter Out Data for Flights To Austin
+ABIA
+AusFrom <- filter(ABIA, Origin=="AUS")
+
+# Find Mean Departure Delay for all flights leaving Austin
+AusFromAD <- AusFrom %>%
+  group_by(Dest) %>%
+  summarize(DepDelayMean = mean(DepDelay, na.rm = T)) %>%
+  as.data.frame()
+```
+
+```{r include=TRUE}
+# Graph Mean Departure Delay for all flights leaving Austin
+ggplot(AusFromAD, aes(x = Dest, y = DepDelayMean, label = DepDelayMean)) +
+  geom_bar(stat = 'identity', aes(fill = DepDelayMean, x=reorder(Dest, DepDelayMean)), width = .8) +
+  coord_flip() +
+  scale_fill_gradient(low="green", high="red") +
+  theme(text = element_text(size=10)) +
+  labs(title = "Average Flight Delay for Flights from AUS",
+       x = "Destination",
+       y = "Average Departure Delay",
+       caption = "Source: ABIA") 
+```
