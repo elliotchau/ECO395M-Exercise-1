@@ -1,0 +1,340 @@
+---
+title: "Exercise 1, Problem 3"
+author: elliot
+output: github_document
+---
+
+
+```{r include = FALSE}
+# Load packages
+library(FNN)
+library(tidyverse)
+library(caret)
+library(cowplot)
+library(ggthemes)
+
+sclass <- read.csv("sclass.csv")
+
+# Create a subset of 'Trim', leaving only sclass65AMG 
+sclass65AMG = subset(sclass, trim == '65 AMG')
+summary(sclass65AMG)
+
+# Train/Test split for 65AMG
+N65AMG = nrow(sclass65AMG)
+N_train65AMG = floor(0.8*N65AMG)
+N_test65AMG = N65AMG - N_train65AMG
+
+# Random sampling a set of data points to include in the training set for 65AMG
+train_ind65AMG = sample.int(N65AMG, N_train65AMG, replace=FALSE)
+
+# Seperating the data into training and testing sets for 65AMG and seeding for reproducibility
+set.seed(65)
+D_train65AMG = sclass65AMG[train_ind65AMG,]
+D_test65AMG = sclass65AMG[-train_ind65AMG,]
+
+# Reording the rows of the testing set by mileage for 65AMG
+D_test65AMG = arrange(D_test65AMG, mileage)
+head(D_test65AMG)
+
+# Seperating the training and testing sets into features (X = mileage), and outcomes (y = price)
+X_train65AMG = select(D_train65AMG, mileage)
+y_train65AMG = select(D_train65AMG, price)
+X_test65AMG = select(D_test65AMG, mileage)
+y_test65AMG = select(D_test65AMG, price)
+
+# Define KNN for 65AMG at different values of K
+knn3 = knn.reg(train = X_train65AMG, test = X_test65AMG, y = y_train65AMG, k=3)
+names(knn3)
+
+knn13 = knn.reg(train = X_train65AMG, test = X_test65AMG, y = y_train65AMG, k=13)
+names(knn13)
+
+knn17 = knn.reg(train = X_train65AMG, test = X_test65AMG, y = y_train65AMG, k=17)
+names(knn17)
+
+knn25 = knn.reg(train = X_train65AMG, test = X_test65AMG, y = y_train65AMG, k=25)
+names(knn25)
+
+knn50 = knn.reg(train = X_train65AMG, test = X_test65AMG, y = y_train65AMG, k=50)
+names(knn50)
+
+knn100 = knn.reg(train = X_train65AMG, test = X_test65AMG, y = y_train65AMG, k=100)
+names(knn100)
+
+# Helper Function for calculating the RMSE of 65AMG
+rmse = function(y, ypred) {
+  sqrt(mean(data.matrix((y-ypred)^2)))
+}
+
+# Price prediction for 65AMG using different values of K
+ypred65AMG_knn3 = knn3$pred
+ypred65AMG_knn13 = knn13$pred
+ypred65AMG_knn17 = knn17$pred
+ypred65AMG_knn25 = knn25$pred
+ypred65AMG_knn50 = knn50$pred
+ypred65AMG_knn100 = knn100$pred
+
+# Out-of-sample RMSE for each value of K 
+rmse(y_test65AMG, ypred65AMG_knn3)
+rmse(y_test65AMG, ypred65AMG_knn13)
+rmse(y_test65AMG, ypred65AMG_knn17)
+rmse(y_test65AMG, ypred65AMG_knn25)
+rmse(y_test65AMG, ypred65AMG_knn50)
+rmse(y_test65AMG, ypred65AMG_knn100)
+
+# Attach each predictive model to the 65AMG test data frame
+D_test65AMG$ypred65AMG_knn3 = ypred65AMG_knn3
+
+D_test65AMG$ypred65AMG_knn13 = ypred65AMG_knn13
+
+D_test65AMG$ypred65AMG_knn17 = ypred65AMG_knn17
+
+D_test65AMG$ypred65AMG_knn25 = ypred65AMG_knn25
+
+D_test65AMG$ypred65AMG_knn50 = ypred65AMG_knn50
+
+D_test65AMG$ypred65AMG_knn100 = ypred65AMG_knn100
+```
+
+```{r include = TRUE}
+# Create base graph for plotting the testing data frame
+p_test65AMG = ggplot(data = D_test65AMG) + 
+  geom_point(mapping = aes(x = mileage, y = price)) +
+  theme_economist()
+
+p_test65AMG
+```
+
+```{r include = FALSE}
+# Create plots for each test for the predictive price models at the different values of K
+plot65amg.knn3 <- p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn3), color='red') +
+  labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 3")
+
+plot65amg.knn13 <- p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn13), color='red') +
+  labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 13")
+
+plot65amg.knn17 <- p_test65AMG +  geom_path(aes(x = mileage, y = ypred65AMG_knn17), color='red') +
+  labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 17")
+
+plot65amg.knn25 <- p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn25), color='red') +
+  labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 25")
+
+plot65amg.knn50 <- p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn50), color='red') +
+  labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 50")
+
+plot65amg.knn100 <- p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn100), color='red') +
+  labs(title = "Predictive model of price for a \n 65AMG given Mileage: KNN = 100")
+```
+
+```{r include = TRUE}
+plot_grid(plot65amg.knn3, plot65amg.knn25, plot65amg.knn13, plot65amg.knn50, plot65amg.knn17, plot65amg.knn100,
+          ncol = 2, axis = '1', align = 'h')
+```
+
+```{r include = FALSE}
+# Finding the optimal value of K
+# Computing KNN classifier and seeding for reproducibility
+set.seed(65)
+KnnModel65AMG <- train(
+  mileage ~ price, data = D_train65AMG, method = "knn",
+  trControl = trainControl("cv", number = 10),
+  preProcess = c("center","scale"),
+  tuneLength = 20
+)
+```
+
+```{r include = TRUE}
+# Plot the value of model error (RMSE) vs the Number of K
+plot(KnnModel65AMG, 
+     main = "Number of K vs RMSE for sclass 65AMG", 
+     xlab = "Number of K Neighbors", 
+     ylab = "RMSE (Cross-Validation)")
+```
+
+```{r include = FALSE}
+# Print the best tuning parameter K that maximizes model accuracy
+KnnModel65AMG$bestTune
+# Optimal value for this train/test split (seed(65)) is K = 11
+#Repeat above steps for K = 21
+knn21 = knn.reg(train = X_train65AMG, test = X_test65AMG, y = y_train65AMG, k=21)
+names(knn21)
+
+ypred65AMG_knn21 = knn21$pred
+
+rmse(y_test65AMG, ypred65AMG_knn21)
+
+D_test65AMG$ypred65AMG_knn21 = ypred65AMG_knn21
+```
+
+```{r include = TRUE}
+
+p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
+  labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 21", 
+       subtitle = "Optimal level of K")
+```
+
+```{r include = FALSE}
+# Repeat for sclass350
+sclass350=subset(sclass, trim == '350')
+summary(sclass350)
+
+#split data into training and testing data for sclass350
+N350 = nrow(sclass350)
+N_train350 = floor(0.8*N350)
+N_test350 = N350-N_train350
+
+#randomly sample data points to include in training 
+train_ind350 = sample.int(N350,N_train350, replace = FALSE)
+
+#define the training and testing sets
+set.seed(350)
+D_train350 = sclass350[train_ind350,]
+D_test350 = sclass350[-train_ind350,]
+
+D_test350=arrange(D_test350,mileage)
+head(D_test350)
+
+#seperate into training and testing data
+X_train350 = select(D_train350,mileage)
+y_train350 = select(D_train350,price)
+X_test350 = select(D_test350,mileage)
+y_test350 = select(D_test350,price)
+
+#define KNN levels of K for trim=350
+knn3=knn.reg(X_train350, test = X_test350, y = y_train350,k=3)
+names(knn3)
+
+knn10=knn.reg(X_train350, test = X_test350, y = y_train350,k=10)
+names(knn10)
+
+knn20=knn.reg(X_train350, test = X_test350, y = y_train350,k=20)
+names(knn20)
+
+knn40=knn.reg(X_train350, test = X_test350, y = y_train350,k=40)
+names(knn40)
+
+knn60=knn.reg(X_train350, test = X_test350, y = y_train350,k=60)
+names(knn60)
+
+knn80=knn.reg(X_train350, test = X_test350, y = y_train350,k=80)
+names(knn80)
+
+knn100=knn.reg(X_train350, test = X_test350, y = y_train350,k=100)
+names(knn100)
+
+knn120=knn.reg(X_train350, test = X_test350, y = y_train350,k=120)
+names(knn120)
+
+#price prediction for different values of k for trim=350
+ypred350_knn3=knn3$pred
+ypred350_knn10=knn10$pred
+ypred350_knn20=knn20$pred
+ypred350_knn40=knn40$pred
+ypred350_knn60=knn60$pred
+ypred350_knn80=knn80$pred
+ypred350_knn100=knn100$pred
+ypred350_knn120=knn120$pred
+
+#out of sample RMSE for different values of k for trim=350
+rmse(y_test350, ypred350_knn3)
+rmse(y_test350, ypred350_knn10)
+rmse(y_test350, ypred350_knn20)
+rmse(y_test350, ypred350_knn40)
+rmse(y_test350, ypred350_knn60)
+rmse(y_test350, ypred350_knn80)
+rmse(y_test350, ypred350_knn100)
+rmse(y_test350, ypred350_knn120)
+
+D_test350$ypred350_knn3 = ypred350_knn3
+D_test350$ypred350_knn10 = ypred350_knn10
+D_test350$ypred350_knn20 = ypred350_knn20
+D_test350$ypred350_knn40 = ypred350_knn40
+D_test350$ypred350_knn60 = ypred350_knn60
+D_test350$ypred350_knn80 = ypred350_knn80
+D_test350$ypred350_knn100 = ypred350_knn100
+D_test350$ypred350_knn120 = ypred350_knn120
+```
+
+```{r include = TRUE}
+#create plot
+p_test350=ggplot(data=D_test350)+
+  geom_point(mapping=aes(x=mileage, y=price))+
+  theme_economist()
+
+p_test350
+```
+
+```{r include = FALSE}
+plot350.knn3 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn3),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=3")
+
+plot350.knn10 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn10),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=10")
+
+plot350.knn20 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn20),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=20")
+
+plot350.knn40 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn40),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=40")
+
+plot350.knn60 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn60),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=60")
+
+plot350.knn80 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn80),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=80")
+
+plot350.knn100 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn100),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=100")
+
+plot350.knn120 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn120),color="red")+
+  labs(title="Predictive model of Price for a \n 350 given mileage: KNN=120")
+```
+
+```{r include = TRUE}
+plot_grid(plot350.knn3,plot350.knn10,plot350.knn20,plot350.knn40,plot350.knn60,plot350.knn80,plot350.knn100,plot350.knn120,
+          ncol = 2, axis='1', align='h')
+```
+
+```{r include = FALSE}
+#Find optimal K
+set.seed(350)
+KnnModel350 <- train(
+  mileage ~ price, 
+  data = D_train350,
+  method = "knn",
+  trControl = trainControl("cv", number = 10),
+  preProcess = c("center","scale"),
+  tuneLength = 20
+)
+```
+
+```{r include = TRUE}
+#plot RMSE vs levels of K
+plot(KnnModel350, 
+     main = "Number of K vs RMSE for sclass 350",
+     xlab = "Number of K Neighbors",
+     ylab = "RMSE(Cross-Validation)")
+```
+
+```{r include = FALSE}
+#print level of k that maximizes RMSE
+
+KnnModel350$bestTune
+
+# Find optimal k
+knn13 = knn.reg(train = X_train350, test = X_test350, y = y_train350, k=13)
+names(knn13)
+
+ypred350_knn13 = knn13$pred
+
+rmse(y_test350,ypred350_knn13)
+
+D_test350$ypred350_knn13 = ypred350_knn13
+```
+
+```{r include = TRUE}
+p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red')+
+  labs(title ="Predictive Model of Price for a \n 350 given Mileage: Knn= 13",
+       subtitle = "Optimal level of K")
+
+```
