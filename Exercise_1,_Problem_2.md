@@ -45,7 +45,7 @@ for (j in 1:length(fsub$airport1)) {
 
 ![unnamed-chunk-1-2](https://user-images.githubusercontent.com/47119252/52543823-59f10480-2d72-11e9-9444-84afaa3db77f.png)
 
-This graphic illustrates several domestic destinations that Austin Bergstrom directly connects with. Common with most mid-sized airports, these nonstop connections are almost exclusive with major cities that either serve as destinations or connections in that direction.
+This graphic illustrates several domestic destinations that Austin Bergstrom directly connects with. Common with most mid-sized airports, these nonstop connections are almost exclusive with major cities that serve as frequent domestic destinations.
 
 **Flight Delays**
 -----------------
