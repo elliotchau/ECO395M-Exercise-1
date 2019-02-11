@@ -67,14 +67,14 @@ plot(KnnModel350, main = "Number of K vs RMSE for sclass 350", xlab = "Number of
 ![knn350](https://user-images.githubusercontent.com/47119252/52544490-c0782180-2d76-11e9-8bdb-729097e8f7ed.png)
 
 
-**Optimal at k=13**
+**Optimal at k=15**
 ---
 ``` r
-p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red') + labs(title ="Predictive Model of Price for a \n 350 given Mileage: Knn= 13", subtitle = "Optimal level of K")
+p_test350 + geom_path(aes(x=mileage, y=ypred350_knn15), color='red') + labs(title ="Predictive Model of Price for a \n 350 given Mileage: Knn= 15", subtitle = "Optimal level of K")
 ```
 
 ![knn350line](https://user-images.githubusercontent.com/47119252/52544498-cbcb4d00-2d76-11e9-9c28-aff1e7fe2048.png)
 
 **Which trim yields a larger optimal value of K? Why do you think this is?**
 ---
-The S65 AMG has an optimal k=21, and the S350 has an optimal k=13. This is likely due to the sample size for the trims. Because there are more S350's in the data set (due its relatively lower price), the trim can "pull" fewer nearby data points to make an inference. It does not need to reach out as far to aid in the prediction.
+The S65 AMG has an optimal k=21, and the S350 has an optimal k=15. This is likely due to the sample size for the trims. Because there are more S350's in the data set (due its relatively lower price), the trim can "pull" fewer nearby data points to make an inference. It does not need to reach out as far to aid in the prediction.
