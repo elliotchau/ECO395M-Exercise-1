@@ -9,21 +9,10 @@ David Garrett, Hana Krijestorac, and Elliot Chau
 
 ``` r
 # Create base map
-basemap <- map("world",
-    regions = c("usa"),
-    fill = T,
-    col = "grey8",
-    bg = "grey15",
-    ylim = c(21.0,50.0),
-    xlim = c(-130.0,-65.0),
-    main = "Map of all Airports in the Continental US")
+basemap <- map("world", regions = c("usa"), fill = T, col = "grey8", bg = "grey15", ylim = c(21.0,50.0), xlim = c(-130.0,-65.0), main = "Map of all Airports in the Continental US")
 
 # Overlay US airports
-airportoverlay <- points(usairports$lon,
-       usairports$lat,
-       pch = 3,
-       cex = 0.1,
-       col = "chocolate1")
+airportoverlay <- points(usairports$lon, usairports$lat, pch = 3, cex = 0.1, col = "chocolate1")
 
 # Add flights connected from AUS to all other US airports
 for (i in (1:dim(usairports)[1])) { 
@@ -38,20 +27,9 @@ for (i in (1:dim(usairports)[1])) {
 
 ``` r
 # Create new map with direct flights to and from AUS
-map("world",
-    regions = c("usa"),
-    fill = T,
-    col = "grey8",
-    bg = "grey15",
-    ylim = c(21.0,50.0),
-    xlim = c(-130.0,-65.0),
-    main = "Map of all Direct Flights to and from Austin")
+map("world", regions = c("usa"), fill = T, col = "grey8", bg = "grey15", ylim = c(21.0,50.0), xlim = c(-130.0,-65.0), main = "Map of all Direct Flights to and from Austin")
 
-points(usairports$lon,
-       usairports$lat,
-       pch = 3,
-       cex = 0.1,
-       col = "chocolate1")
+points(usairports$lon, usairports$lat, pch = 3, cex = 0.1, col = "chocolate1")
 
 # Filter out all flights outside of the Continental US that are not directly connected to Austin
 fsub <- flights[flights$airport1 == "AUS",]
@@ -65,7 +43,6 @@ for (j in 1:length(fsub$airport1)) {
                             air2[1,]$lat), 
                           n=100, 
                           addStartEnd=TRUE)
-  
   lines(inter, 
         col="turquoise2",
         lwd=0.3)
