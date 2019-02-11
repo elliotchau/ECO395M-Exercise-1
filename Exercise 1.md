@@ -1,6 +1,6 @@
 Exercise 1
 ===============
--By Hana Krijestorac, David Garrett, and Elliot Chau
+By Hana Krijestorac, David Garrett, and Elliot Chau
 
 Problem 1
 ================
