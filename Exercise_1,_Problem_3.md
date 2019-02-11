@@ -3,6 +3,7 @@ Exercise 1, Problem 3
 David Garrett, Hana Krijestorac, and Elliot Chau
 
 **Mercedes S65 AMG**
+---
 **Scatterplot of price against mileage**
 ``` r
 # Create base graph for plotting the testing data frame
@@ -15,6 +16,7 @@ p_test65AMG
 
 ![p_test65amg](https://user-images.githubusercontent.com/47119252/52541403-328e3d80-2d5a-11e9-843b-5081175cae22.png)
 
+**Illustration of several knn plots**
 ``` r
 plot_grid(plot65amg.knn3, plot65amg.knn25, plot65amg.knn13, plot65amg.knn50, plot65amg.knn17, plot65amg.knn100,
           ncol = 2, axis = '1', align = 'h')
@@ -32,6 +34,7 @@ plot(KnnModel65AMG,
 
 ![knnmodel65amg](https://user-images.githubusercontent.com/47119252/52541517-b3016e00-2d5b-11e9-9c83-afb0d36b0edd.png)
 
+**Optimal knn**
 ``` r
 p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
   labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 21", 
@@ -40,6 +43,9 @@ p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
 
 ![p_test65amg](https://user-images.githubusercontent.com/47119252/52541532-e7752a00-2d5b-11e9-9f5d-91d5c8caad3f.png)
 
+**Mercedes S350**
+---
+**Scatterplot of price against mileage**
 ``` r
 #create plot
 p_test350=ggplot(data=D_test350)+
