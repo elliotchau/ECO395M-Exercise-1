@@ -64,7 +64,7 @@ plot(KnnModel350,
      ylab = "RMSE(Cross-Validation)")
 ```
 
-![](Exercise_1,_Problem_3_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![knn350](https://user-images.githubusercontent.com/47119252/52543005-4f7f3c80-2d6b-11e9-81ee-36404136e07e.png)
 
 ``` r
 p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red')+
@@ -72,4 +72,4 @@ p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red')+
        subtitle = "Optimal level of K")
 ```
 
-![](Exercise_1,_Problem_3_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![knn350line](https://user-images.githubusercontent.com/47119252/52543017-72115580-2d6b-11e9-9f17-233e9be4ee94.png)
