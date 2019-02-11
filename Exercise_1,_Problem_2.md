@@ -36,16 +36,8 @@ fsub <- flights[flights$airport1 == "AUS",]
 for (j in 1:length(fsub$airport1)) {
   air1 <- airports[airports$iata == fsub[j,]$airport1,]
   air2 <- airports[airports$iata == fsub[j,]$airport2,]
-  
-  inter <- gcIntermediate(c(air1[1,]$long, 
-                            air1[1,]$lat), 
-                          c(air2[1,]$long, 
-                            air2[1,]$lat), 
-                          n=100, 
-                          addStartEnd=TRUE)
-  lines(inter, 
-        col="turquoise2",
-        lwd=0.3)
+  inter <- gcIntermediate(c(air1[1,]$long, air1[1,]$lat), c(air2[1,]$long, air2[1,]$lat), n=100, addStartEnd=TRUE)
+  lines(inter, col="turquoise2", lwd=0.3)
 }
 ```
 
