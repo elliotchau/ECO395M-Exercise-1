@@ -25,7 +25,7 @@ The first several years clearly show that occupancy rates take time to increase.
 
 ``` r
 boxplot(Rent~green_rating, data=Young, main="Rent by Building Type", 
-        xlab="Green Building Designation", ylab="Rent ($)",
+        xlab="Green Building Designation", ylab="Rent ($/sq ft)",
         ylim=c(0, 90))
 ```
 
