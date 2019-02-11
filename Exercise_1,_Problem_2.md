@@ -28,7 +28,6 @@ for (i in (1:dim(usairports)[1])) {
 ``` r
 # Create new map with direct flights to and from AUS
 map("world", regions = c("usa"), fill = T, col = "grey8", bg = "grey15", ylim = c(21.0,50.0), xlim = c(-130.0,-65.0), main = "Map of all Direct Flights to and from Austin")
-
 points(usairports$lon, usairports$lat, pch = 3, cex = 0.1, col = "chocolate1")
 
 # Filter out all flights outside of the Continental US that are not directly connected to Austin
