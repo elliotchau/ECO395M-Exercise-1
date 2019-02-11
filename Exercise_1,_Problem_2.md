@@ -32,7 +32,7 @@ for (i in (1:dim(usairports)[1])) {
 }
 ```
 
-![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![unnamed-chunk-2-1](https://user-images.githubusercontent.com/47119252/52543816-4c3b7f00-2d72-11e9-8166-5b65b141af7b.png)
 
 **Direct flight connections**
 
@@ -72,7 +72,8 @@ for (j in 1:length(fsub$airport1)) {
 }
 ```
 
-![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![unnamed-chunk-1-2](https://user-images.githubusercontent.com/47119252/52543823-59f10480-2d72-11e9-9444-84afaa3db77f.png)
+
 
 **Flight Delays**
 -----------------
@@ -83,9 +84,7 @@ for (j in 1:length(fsub$airport1)) {
 IntoAustin
 ```
 
-    ## Warning: Removed 1 rows containing missing values (position_stack).
-
-![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![intoaustin](https://user-images.githubusercontent.com/47119252/52543868-a63c4480-2d72-11e9-9ad4-b8b8ed72a179.png)
 
 **Heading out of Austin**
 
@@ -93,6 +92,6 @@ IntoAustin
 OutOfAustin
 ```
 
-    ## Warning: Removed 1 rows containing missing values (position_stack).
+![outofaustin](https://user-images.githubusercontent.com/47119252/52543895-e0a5e180-2d72-11e9-90ff-2dfccf1bc9c7.png)
 
-![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
