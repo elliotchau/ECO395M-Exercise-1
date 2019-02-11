@@ -70,5 +70,5 @@ OutOfAustin
 
 For traffic heading out of Austin, the top three destinations are Norfolk International Airport (ORF), Des Moines International Airport (DSM), and Newark Liberty International Airport (EWR). Again, it is difficult to find a reason why this might be the case.
 
-Overall, average flight delays are much lower when leaving Austin than arriving. This is likely due to the fact that Austin is a destination "end point" and not a "transfer hub" for East-West (Chicago/Dallas) or North-South (DC/Charlotte) domestic traffic.
+Overall, average flight delays are much lower when leaving Austin than arriving. This is likely due to the fact that Austin is a destination "end point" and not a "transfer hub" for East-West (e.g. Chicago) or North-South (e.g. DC) domestic traffic.
 
