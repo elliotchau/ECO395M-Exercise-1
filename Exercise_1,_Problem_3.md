@@ -5,6 +5,7 @@ David Garrett, Hana Krijestorac, and Elliot Chau
 **Mercedes S65 AMG**
 ---
 **Scatterplot of price against mileage**
+---
 ``` r
 # Create base graph for plotting the testing data frame
 p_test65AMG = ggplot(data = D_test65AMG) + 
