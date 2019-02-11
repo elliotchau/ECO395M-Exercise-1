@@ -2,7 +2,7 @@ Exercise 1, Problem 3
 ================
 David Garrett, Hana Krijestorac, and Elliot Chau
 
-**Mercedes S65 AMG**
+***Mercedes S65 AMG***
 ---
 **Scatterplot of price against mileage**
 ---
@@ -36,7 +36,7 @@ plot(KnnModel65AMG,
 
 ![knnmodel65amg](https://user-images.githubusercontent.com/47119252/52541517-b3016e00-2d5b-11e9-9c83-afb0d36b0edd.png)
 
-**Optimal knn**
+**Optimal at k=21**
 ---
 ``` r
 p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
@@ -46,7 +46,7 @@ p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
 
 ![p_test65amg](https://user-images.githubusercontent.com/47119252/52541532-e7752a00-2d5b-11e9-9f5d-91d5c8caad3f.png)
 
-**Mercedes S350**
+***Mercedes S350***
 ---
 **Scatterplot of price against mileage**
 ---
@@ -80,7 +80,7 @@ plot(KnnModel350,
 
 ![knn350](https://user-images.githubusercontent.com/47119252/52543005-4f7f3c80-2d6b-11e9-81ee-36404136e07e.png)
 
-**Optimal knn**
+**Optimal at k=13**
 ---
 ``` r
 p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red')+
