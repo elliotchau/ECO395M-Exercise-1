@@ -1,118 +1,75 @@
 ---
 title: "Exercise 1, Problem 1"
-author: "Hana, David, and Elliot"
 output: github_document
 ---
-```{r include = FALSE}
-library (tidyverse)
 
+```{r include = FALSE}
 greenbuildings <- read.csv("greenbuildings.csv")
-y = greenbuildings$Rent
-summary(y)
+library(ggplot2)
+library(tidyverse)
+#################################################################################
 
-yTotal = y*greenbuildings$size
-summary(yTotal)
+#remove zero occupancy
+NonZero = subset(greenbuildings, leasing_rate > 0)
+Young = subset(NonZero, age < 20)
+# oldest green buildling is 19 based on max green1
+# split up into green and non green
+NonGreen1 <- subset(Young, green_rating==0)
+Green1 <- subset(Young, green_rating==1)
 
-green = greenbuildings$green_rating
 
-#indices of rows that are green (g) vs not green (n)
-g = which(green == 1)
-n = which(green == 0)
+# pipes
+Green_summ <- Green1 %>%
+  group_by(age, green_rating==1) %>%
+  summarize(leasing_rate = mean(leasing_rate)/100)
 
-length(g)
-length(n)
+NonGreen_summ <- NonGreen1 %>%
+  group_by(age, green_rating==0) %>%
+  summarize(leasing_rate = mean(leasing_rate)/100)
+
+# line charts
+BAOR = ggplot() + 
+  geom_line(data = Green_summ, aes(x = age, y = leasing_rate), color = "chartreuse3") +
+  geom_line(data = NonGreen_summ, aes(x = age, y = leasing_rate), color = "burlywood4") + 
+  scale_y_continuous(labels = scales::percent, limits = c(0,1)) +
+  labs(title = "Building Age and Occupancy Rate",
+     y = "Occupancy rate",
+     x = "Age of the building (years)") + 
+  theme_minimal()
 ```
 
-
-**Density plot of all buildings**
----
-
 ```{r include = TRUE}
-#density plots
-dg = density(y[g])
-plot(dg, xlab = "$/sq ft", main = "Density plot of rents for green and non-green apartments", ylim=c(0,.05), col = 'green')
-
-dn = density(y[n])
-lines(dn)
-
-labels = c('Green', 'Non-green')
-legend('topright', labels, col = c("green","black"), lty = c(1,1))
+BAOR
 ```
 
 ```{r include = FALSE}
-#remove low occupancy
-low = which(greenbuildings$leasing_rate < 10)
-high = which(greenbuildings$leasing_rate >= 10)
+# median rents
+median(NonGreen1$Rent)
+median(Green1$Rent)
+# $0.60 premium/sq ft for green buildings
 
-newdata = greenbuildings[high,]
+# building size * premium
+GreenPayoff = 250000 * 0.60
+# $150k/year at max occupancy
 
-green = newdata$green_rating
+# factor in occupancy rate for all 19 years
+Green_summ$ActualPayoff <- GreenPayoff * Green_summ$leasing_rate
+Green_summ$GuruPayoff <- 650000
 
-#indices of rows that are green (g) vs not green (n)
-g = which(green == 1)
-n = which(green == 0)
+# amount paid after 19 years
+sum(Green_summ$ActualPayoff)
+sum(Green_summ$GuruPayoff)
 
-length(g)
-length(n)
-
-y = newdata$Rent
+#####################################
+# guru vs me
+table <- matrix(c(
+  sum(Green_summ$ActualPayoff),
+  sum(Green_summ$GuruPayoff)
+  ), ncol=1, byrow=TRUE)
+colnames(table) <- c("Payoff")
+rownames(table) <- c("Our analysis","Guru")
+table <- as.table(table)
 ```
-
-**Low occupancy buildings removed**
----
 ```{r include = TRUE}
-#density plots
-dg = density(y[g])
-
-plot(dg, xlab = "$/sq ft", main = "Density plot of rents for green and non-green apartments", ylim=c(0,.05), col = 'green')
-
-dn = density(y[n])
-lines(dn)
-
-labels = c('Green', 'Non-green')
-legend('topright', labels, col = c("green","black"), lty = c(1,1))
-
-res = cor(newdata)
-View(res)
-
-res2 = cbind(res[,5], res[,14])
-colnames(res2) = c("rent", "green")
-View(res2)
-```
-
-These two plots look nearly identical.
-
-
-**Various correlation plots between rent and a characteristic**
----
-
-```{r include = TRUE}
-#try: age
-age = newdata$age
-rent = newdata$Rent
-plot(rent ~ age, cex = 0.5)
-
-abline(lm(rent~age), lwd = 2, col = "red")
-
-#try class_a
-class_a = newdata$age
-rent = newdata$Rent
-plot(rent ~ class_a, cex = 0.5)
-
-abline(lm(rent~class_a), lwd = 2, col = "red")
-
-#try amenities 
-amenities = newdata$amenities
-rent = newdata$Rent
-plot(rent~amenities, cex = 0.5)
-
-abline(lm(rent~amenities), lwd = 2, col = "red")
-#amenities is a categorical variable so this plot wasn't useful maybe try finding mean/median
-
-#try leasing rate
-leasing_rate = newdata$leasing_rate
-rent = newdata$Rent
-plot(rent~leasing_rate, cex = 0.5)
-abline(lm(rent~amenities), lwd = 2, col = "red")
-#this showed a positive relationship but not the most convincing plot
+table
 ```
