@@ -13,6 +13,7 @@ p_test65AMG
 ![p_test65amg](https://user-images.githubusercontent.com/47119252/52544364-24e6b100-2d76-11e9-885f-915e7dfa5331.png)
 
 **Several models at different k-levels**
+---
 ``` r
 plot_grid(plot65amg.knn3, plot65amg.knn25, plot65amg.knn13, plot65amg.knn50, plot65amg.knn17, plot65amg.knn100,
           ncol = 2, axis = '1', align = 'h')
@@ -20,6 +21,8 @@ plot_grid(plot65amg.knn3, plot65amg.knn25, plot65amg.knn13, plot65amg.knn50, plo
 
 ![grid65amg](https://user-images.githubusercontent.com/47119252/52544371-329c3680-2d76-11e9-9e03-66c97d80f273.png)
 
+**Determine optimal k at lowest point**
+---
 ``` r
 # Plot the value of model error (RMSE) vs the Number of K
 plot(KnnModel65AMG, main = "Number of K vs RMSE for sclass 65AMG", xlab = "Number of K Neighbors", ylab = "RMSE (Cross-Validation)")
@@ -47,13 +50,15 @@ p_test350
 ![p_test350](https://user-images.githubusercontent.com/47119252/52544472-a3dbe980-2d76-11e9-9f09-43bdf297c539.png)
 
 **Several models at different k-levels**
+---
 ``` r
 plot_grid(plot350.knn3,plot350.knn10,plot350.knn20,plot350.knn40,plot350.knn60,plot350.knn80,plot350.knn100,plot350.knn120, ncol = 2, axis='1', align='h')
 ```
 
 ![grid350](https://user-images.githubusercontent.com/47119252/52544478-acccbb00-2d76-11e9-9661-8bcd5cb9790c.png)
 
-
+**Determine optimal k at lowest point**
+---
 ``` r
 #plot RMSE vs levels of K
 plot(KnnModel350, main = "Number of K vs RMSE for sclass 350", xlab = "Number of K Neighbors", ylab = "RMSE(Cross-Validation)")
