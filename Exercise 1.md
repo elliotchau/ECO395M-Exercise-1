@@ -1,16 +1,16 @@
-
-Hana Krijestorac, David Garrett, and Elliot Chau
----
+Exercise 1
+===============
+-By Hana Krijestorac, David Garrett, and Elliot Chau
 
 Problem 1
 ================
 The data guru's analysis was too simple. In essence, they simply assummed that several things that were not quite realistic. They are as follows:
 
     (1) They assumed a 100% occupancy rate.
-    (2) They lumped together all buildlings, old and new, and made a comparison from there.
+    (2) They lumped together all buildings, old and new, and made a comparison from there.
     (3) These two assumptions resulted in an overvaluation of the green premium per square foot for rent.
 
-First, truncating the data by removing buildlings with lease rates of less than 10% is too generous. We elected to only remove buildings with zero occupancy. Second, to fairly compare green and non-green buildlings, we determined that the oldest green buildling was 19 years old. We then removed all non-green buildlings older than 19 years old. This provides an opportunity for an "apples to apples" comparison.
+First, truncating the data by removing buildings with lease rates of less than 10% is too generous. We elected to only remove buildings with zero occupancy. Second, to fairly compare green and non-green buildings, we determined that the oldest green building was 19 years old. We then removed all non-green buildings older than 19 years old. This provides an opportunity for an "apples to apples" comparison.
 
 After doing so, we generated this chart which challenges the guru's first assumption.
 
