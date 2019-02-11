@@ -12,7 +12,7 @@ The data guru's analysis was too simple. In essence, they simply assummed that s
 
 First, truncating the data by removing buildings with lease rates of less than 10% is too generous. We elected to only remove buildings with zero occupancy. Second, to fairly compare green and non-green buildings, we determined that the oldest green building was 19 years old. We then removed all non-green buildings older than 19 years old. This provides an opportunity for an "apples to apples" comparison.
 
-After doing so, we generated this chart which challenges the guru's first assumption.
+After doing so, we generated this chart which challenges the guru's first assumption. The green line represents green buildlings, and the brown line represents non-green buildlings.
 
 ``` r
 BAOR
