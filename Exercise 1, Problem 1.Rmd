@@ -42,6 +42,12 @@ BAOR = ggplot() +
 BAOR
 ```
 
+```{r include = TRUE}
+boxplot(Rent~green_rating, data=Young, main="Rent by Building Type", 
+        xlab="Green Building Designation", ylab="Rent ($)",
+        ylim=c(0, 90))
+```        
+
 ```{r include = FALSE}
 # median rents
 median(NonGreen1$Rent)
