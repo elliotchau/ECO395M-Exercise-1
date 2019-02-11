@@ -18,6 +18,7 @@ p_test65AMG
 ![p_test65amg](https://user-images.githubusercontent.com/47119252/52541403-328e3d80-2d5a-11e9-843b-5081175cae22.png)
 
 **Illustration of several knn plots**
+---
 ``` r
 plot_grid(plot65amg.knn3, plot65amg.knn25, plot65amg.knn13, plot65amg.knn50, plot65amg.knn17, plot65amg.knn100,
           ncol = 2, axis = '1', align = 'h')
@@ -36,6 +37,7 @@ plot(KnnModel65AMG,
 ![knnmodel65amg](https://user-images.githubusercontent.com/47119252/52541517-b3016e00-2d5b-11e9-9c83-afb0d36b0edd.png)
 
 **Optimal knn**
+---
 ``` r
 p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
   labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 21", 
@@ -47,6 +49,7 @@ p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
 **Mercedes S350**
 ---
 **Scatterplot of price against mileage**
+---
 ``` r
 #create plot
 p_test350=ggplot(data=D_test350)+
@@ -58,6 +61,8 @@ p_test350
 
 ![p_test350](https://user-images.githubusercontent.com/47119252/52541587-65393580-2d5c-11e9-966f-7fdcadd2657d.png)
 
+**Illustration of several knn plots**
+---
 ``` r
 plot_grid(plot350.knn3,plot350.knn10,plot350.knn20,plot350.knn40,plot350.knn60,plot350.knn80,plot350.knn100,plot350.knn120,
           ncol = 2, axis='1', align='h')
@@ -75,6 +80,8 @@ plot(KnnModel350,
 
 ![knn350](https://user-images.githubusercontent.com/47119252/52543005-4f7f3c80-2d6b-11e9-81ee-36404136e07e.png)
 
+**Optimal knn**
+---
 ``` r
 p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red')+
   labs(title ="Predictive Model of Price for a \n 350 given Mileage: Knn= 13",
