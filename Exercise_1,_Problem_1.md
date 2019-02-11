@@ -28,7 +28,7 @@ boxplot(Rent~green_rating, data=Young, main="Rent by Building Type",
 ![boxplot](https://user-images.githubusercontent.com/47119252/52556231-9132d600-2db1-11e9-9abe-02b5c323db66.png)
 
 
-Now that we have determined that occupancy is far from 100%, our cleaned data set indicates that the square foot premium for green buildings is much lower than what the guru stated. After our process, we found that green buildings only command a $0.60/sq ft premium. This substantially increases the period required for a break-even return on investment. The following table shows the payoff over a span of 19 years.
+Now that we have determined that occupancy is far from 100%, our cleaned data set indicates that the square foot premium for green buildings is much lower than what the guru stated. After our process, we found that green buildings only command a marginal $0.60/sq ft premium. This substantially increases the period required for a break-even return on investment. The following table shows the payoff over a span of 19 years.
 
 ``` r
 table
