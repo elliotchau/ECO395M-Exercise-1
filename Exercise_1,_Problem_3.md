@@ -75,3 +75,5 @@ p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red') + labs(titl
 
 ![knn350line](https://user-images.githubusercontent.com/47119252/52544498-cbcb4d00-2d76-11e9-9c28-aff1e7fe2048.png)
 
+**Which trim yields a larger optimal value of K? Why do you think this is?**
+The S65 AMG has an optimal k=21, and the S350 has an optimal k=13. This is likely due to the sample size for the trims. Because there are more S350's in the data set (due its relatively lower price), the trim can "pull" fewer nearby data points to make an inference. It does not need to reach out as far to aid in the prediction.
