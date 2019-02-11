@@ -1,7 +1,6 @@
 ---
 title: "Exercise 1, Problem 2"
-author: "Elliot"
-date: "2/10/2019"
+author: "David Garrett, Hana Krijestorac, and Elliot Chau"
 output: github_document
 ---
 
@@ -27,7 +26,10 @@ usairports <- filter(usairports, faa!="AUS")
 aus <- filter(airports, faa=="AUS")
 ```
 
-```{r include=TRUE}
+**Connections to Austin Bergstrom**
+---
+**All connections**
+```{r include = TRUE}
 # Create base map
 basemap <- map("world",
     regions = c("usa"),
@@ -50,11 +52,17 @@ for (i in (1:dim(usairports)[1])) {
   inter <- gcIntermediate(c(aus$lon[1], aus$lat[1]), c(usairports$lon[i], usairports$lat[i]), n=200)
   lines(inter, lwd=0.1, col="turquoise2")    
 }
+```
 
+
+```{r include=FALSE}
 # Load the 'flights' dataset and 'airports' dataset
 flights <- read.csv("http://datasets.flowingdata.com/tuts/maparcs/flights.csv", header=TRUE, as.is=TRUE)
 airports <- read.csv("http://datasets.flowingdata.com/tuts/maparcs/airports.csv", header=TRUE)
+```
 
+**Direct flight connections**
+```{r include=TRUE}
 # Create new map with direct flights to and from AUS
 map("world",
     regions = c("usa"),
@@ -107,16 +115,24 @@ library(tidyverse)
 theme_set(theme_bw())
 ```
 
-```{r include=TRUE}
+**Flight Delays**
+---
+**Heading into Austin**
+```{r include=FALSE}
 # Graph Mean Delay for flights to Austin
-ggplot(AusToAD, aes(x = Origin, y = ArrDelayMean, label = ArrDelayMean)) +
+IntoAustin<-ggplot(AusToAD, aes(x = Origin, y = ArrDelayMean, label = ArrDelayMean)) +
   geom_bar(stat = 'identity', aes(fill = ArrDelayMean, x = reorder(Origin, ArrDelayMean)), width = .8) +
   coord_flip() +
   scale_fill_gradient(low="green", high="red") +
   theme(text = element_text(size=10)) +
-  labs(title = "Average Flight Delay for Flights into AUS") 
+  labs(title = "Average Flight Delay for Flights into AUS",
+       x = "Origin",
+       y = "Average Arrival Delay (minutes)",
+       caption = "Source: ABIA")  
 ```
-
+```{r include=TRUE}
+IntoAustin
+```
 ```{r include=FALSE}
 # Filter Out Data for Flights To Austin
 ABIA
@@ -129,15 +145,19 @@ AusFromAD <- AusFrom %>%
   as.data.frame()
 ```
 
-```{r include=TRUE}
+**Heading out of Austin**
+```{r include=FALSE}
 # Graph Mean Departure Delay for all flights leaving Austin
-ggplot(AusFromAD, aes(x = Dest, y = DepDelayMean, label = DepDelayMean)) +
+OutOfAustin<-ggplot(AusFromAD, aes(x = Dest, y = DepDelayMean, label = DepDelayMean)) +
   geom_bar(stat = 'identity', aes(fill = DepDelayMean, x=reorder(Dest, DepDelayMean)), width = .8) +
   coord_flip() +
   scale_fill_gradient(low="green", high="red") +
   theme(text = element_text(size=10)) +
   labs(title = "Average Flight Delay for Flights from AUS",
        x = "Destination",
-       y = "Average Departure Delay",
+       y = "Average Departure Delay (minutes)",
        caption = "Source: ABIA") 
+```
+```{r include=TRUE}
+OutOfAustin
 ```

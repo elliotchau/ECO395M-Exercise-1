@@ -1,7 +1,11 @@
 Exercise 1, Problem 2
 ================
-Elliot
-2/10/2019
+David Garrett, Hana Krijestorac, and Elliot Chau
+
+**Connections to Austin Bergstrom**
+-----------------------------------
+
+**All connections**
 
 ``` r
 # Create base map
@@ -30,11 +34,9 @@ for (i in (1:dim(usairports)[1])) {
 
 ![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
-``` r
-# Load the 'flights' dataset and 'airports' dataset
-flights <- read.csv("http://datasets.flowingdata.com/tuts/maparcs/flights.csv", header=TRUE, as.is=TRUE)
-airports <- read.csv("http://datasets.flowingdata.com/tuts/maparcs/airports.csv", header=TRUE)
+**Direct flight connections**
 
+``` r
 # Create new map with direct flights to and from AUS
 map("world",
     regions = c("usa"),
@@ -70,35 +72,27 @@ for (j in 1:length(fsub$airport1)) {
 }
 ```
 
-![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-2-2.png)
-
-``` r
-# Graph Mean Delay for flights to Austin
-ggplot(AusToAD, aes(x = Origin, y = ArrDelayMean, label = ArrDelayMean)) +
-  geom_bar(stat = 'identity', aes(fill = ArrDelayMean, x = reorder(Origin, ArrDelayMean)), width = .8) +
-  coord_flip() +
-  scale_fill_gradient(low="green", high="red") +
-  theme(text = element_text(size=10)) +
-  labs(title = "Average Flight Delay for Flights into AUS") 
-```
-
-    ## Warning: Removed 1 rows containing missing values (position_stack).
-
 ![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
+**Flight Delays**
+-----------------
+
+**Heading into Austin**
+
 ``` r
-# Graph Mean Departure Delay for all flights leaving Austin
-ggplot(AusFromAD, aes(x = Dest, y = DepDelayMean, label = DepDelayMean)) +
-  geom_bar(stat = 'identity', aes(fill = DepDelayMean, x=reorder(Dest, DepDelayMean)), width = .8) +
-  coord_flip() +
-  scale_fill_gradient(low="green", high="red") +
-  theme(text = element_text(size=10)) +
-  labs(title = "Average Flight Delay for Flights from AUS",
-       x = "Destination",
-       y = "Average Departure Delay",
-       caption = "Source: ABIA") 
+IntoAustin
 ```
 
     ## Warning: Removed 1 rows containing missing values (position_stack).
 
-![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+**Heading out of Austin**
+
+``` r
+OutOfAustin
+```
+
+    ## Warning: Removed 1 rows containing missing values (position_stack).
+
+![](Exercise_1,_Problem_2_files/figure-markdown_github/unnamed-chunk-10-1.png)
