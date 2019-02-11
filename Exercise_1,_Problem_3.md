@@ -1,6 +1,6 @@
 Exercise 1, Problem 3
 ================
-elliot
+David Garrett, Hana Krijestorac, and Elliot Chau
 
 ``` r
 # Create base graph for plotting the testing data frame
