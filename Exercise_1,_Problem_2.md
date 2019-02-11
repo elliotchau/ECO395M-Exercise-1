@@ -42,7 +42,6 @@ for (j in 1:length(fsub$airport1)) {
 
 ![unnamed-chunk-1-2](https://user-images.githubusercontent.com/47119252/52543823-59f10480-2d72-11e9-9444-84afaa3db77f.png)
 
-
 **Flight Delays**
 -----------------
 
