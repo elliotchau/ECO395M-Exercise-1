@@ -21,7 +21,7 @@ plot_grid(plot65amg.knn3, plot65amg.knn25, plot65amg.knn13, plot65amg.knn50, plo
 
 ![grid65amg](https://user-images.githubusercontent.com/47119252/52544371-329c3680-2d76-11e9-9e03-66c97d80f273.png)
 
-**Determine optimal k at lowest point**
+**Determine optimal k at lowest RMSE**
 ---
 ``` r
 # Plot the value of model error (RMSE) vs the Number of K
@@ -57,7 +57,7 @@ plot_grid(plot350.knn3,plot350.knn10,plot350.knn20,plot350.knn40,plot350.knn60,p
 
 ![grid350](https://user-images.githubusercontent.com/47119252/52544478-acccbb00-2d76-11e9-9661-8bcd5cb9790c.png)
 
-**Determine optimal k at lowest point**
+**Determine optimal k at lowest RMSE**
 ---
 ``` r
 #plot RMSE vs levels of K
