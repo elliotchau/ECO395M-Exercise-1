@@ -94,14 +94,14 @@ D_test65AMG$ypred65AMG_knn25 = ypred65AMG_knn25
 D_test65AMG$ypred65AMG_knn50 = ypred65AMG_knn50
 
 D_test65AMG$ypred65AMG_knn100 = ypred65AMG_knn100
-```
 
-```{r include = TRUE}
 # Create base graph for plotting the testing data frame
 p_test65AMG = ggplot(data = D_test65AMG) + 
   geom_point(mapping = aes(x = mileage, y = price)) +
   theme_economist()
+```
 
+```{r include = TRUE}
 p_test65AMG
 ```
 
@@ -145,10 +145,7 @@ KnnModel65AMG <- train(
 
 ```{r include = TRUE}
 # Plot the value of model error (RMSE) vs the Number of K
-plot(KnnModel65AMG, 
-     main = "Number of K vs RMSE for sclass 65AMG", 
-     xlab = "Number of K Neighbors", 
-     ylab = "RMSE (Cross-Validation)")
+plot(KnnModel65AMG, main = "Number of K vs RMSE for sclass 65AMG", xlab = "Number of K Neighbors", ylab = "RMSE (Cross-Validation)")
 ```
 
 ```{r include = FALSE}
@@ -167,10 +164,7 @@ D_test65AMG$ypred65AMG_knn21 = ypred65AMG_knn21
 ```
 
 ```{r include = TRUE}
-
-p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +
-  labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 21", 
-       subtitle = "Optimal level of K")
+p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 21", subtitle = "Optimal level of K")
 ```
 
 ```{r include = FALSE}
@@ -253,14 +247,14 @@ D_test350$ypred350_knn60 = ypred350_knn60
 D_test350$ypred350_knn80 = ypred350_knn80
 D_test350$ypred350_knn100 = ypred350_knn100
 D_test350$ypred350_knn120 = ypred350_knn120
-```
 
-```{r include = TRUE}
 #create plot
 p_test350=ggplot(data=D_test350)+
   geom_point(mapping=aes(x=mileage, y=price))+
   theme_economist()
+```
 
+```{r include = TRUE}
 p_test350
 ```
 
@@ -291,8 +285,7 @@ plot350.knn120 <- p_test350 + geom_path(aes(x=mileage, y=ypred350_knn120),color=
 ```
 
 ```{r include = TRUE}
-plot_grid(plot350.knn3,plot350.knn10,plot350.knn20,plot350.knn40,plot350.knn60,plot350.knn80,plot350.knn100,plot350.knn120,
-          ncol = 2, axis='1', align='h')
+plot_grid(plot350.knn3,plot350.knn10,plot350.knn20,plot350.knn40,plot350.knn60,plot350.knn80,plot350.knn100,plot350.knn120, ncol = 2, axis='1', align='h')
 ```
 
 ```{r include = FALSE}
@@ -310,10 +303,7 @@ KnnModel350 <- train(
 
 ```{r include = TRUE}
 #plot RMSE vs levels of K
-plot(KnnModel350, 
-     main = "Number of K vs RMSE for sclass 350",
-     xlab = "Number of K Neighbors",
-     ylab = "RMSE(Cross-Validation)")
+plot(KnnModel350, main = "Number of K vs RMSE for sclass 350", xlab = "Number of K Neighbors", ylab = "RMSE(Cross-Validation)")
 ```
 
 ```{r include = FALSE}
@@ -333,8 +323,5 @@ D_test350$ypred350_knn13 = ypred350_knn13
 ```
 
 ```{r include = TRUE}
-p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red')+
-  labs(title ="Predictive Model of Price for a \n 350 given Mileage: Knn= 13",
-       subtitle = "Optimal level of K")
-
+p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red') + labs(title ="Predictive Model of Price for a \n 350 given Mileage: Knn= 13", subtitle = "Optimal level of K")
 ```
