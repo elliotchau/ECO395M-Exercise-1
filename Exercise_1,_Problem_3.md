@@ -2,6 +2,13 @@ Exercise 1, Problem 3
 ================
 elliot
 
+<<<<<<< HEAD
+=======
+***Mercedes S65 AMG***
+---
+**Scatterplot of price against mileage**
+---
+>>>>>>> deaf120a7a172b07c26fb680cfb55e35a867a0d6
 ``` r
 p_test65AMG
 ```
@@ -22,12 +29,24 @@ plot(KnnModel65AMG, main = "Number of K vs RMSE for sclass 65AMG", xlab = "Numbe
 
 ![](Exercise_1,_Problem_3_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
+<<<<<<< HEAD
+=======
+**Optimal at k=21**
+---
+>>>>>>> deaf120a7a172b07c26fb680cfb55e35a867a0d6
 ``` r
 p_test65AMG + geom_path(aes(x = mileage, y = ypred65AMG_knn21), color='red') +labs(title = "Predictive model of Price for a \n 65AMG given Mileage: KNN = 21", subtitle = "Optimal level of K")
 ```
 
 ![](Exercise_1,_Problem_3_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
+<<<<<<< HEAD
+=======
+***Mercedes S350***
+---
+**Scatterplot of price against mileage**
+---
+>>>>>>> deaf120a7a172b07c26fb680cfb55e35a867a0d6
 ``` r
 p_test350
 ```
@@ -47,6 +66,11 @@ plot(KnnModel350, main = "Number of K vs RMSE for sclass 350", xlab = "Number of
 
 ![](Exercise_1,_Problem_3_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
+<<<<<<< HEAD
+=======
+**Optimal at k=13**
+---
+>>>>>>> deaf120a7a172b07c26fb680cfb55e35a867a0d6
 ``` r
 p_test350 + geom_path(aes(x=mileage, y=ypred350_knn13), color='red') + labs(title ="Predictive Model of Price for a \n 350 given Mileage: Knn= 13", subtitle = "Optimal level of K")
 ```
