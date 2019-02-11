@@ -14,14 +14,19 @@ After doing so, we generated this chart which challenges the guru's first assump
 BAOR
 ```
 
-![](Exercise_1,_Problem_1_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![baor](https://user-images.githubusercontent.com/47119252/52556145-5892fc80-2db1-11e9-9088-c64d9e136c1f.png)
+
+
+The first several years clearly show that occupancy rates take time to increase. Even after the initial period, occupancy rates typically hover around 90%. This signifcantly cuts into the guru's projected rate of return.
 
 ``` r
 boxplot(Rent~green_rating, data=Young, main="Rent by Building Type", 
         xlab="Green Building Designation", ylab="Rent ($)",
         ylim=c(0, 90))
 ```
-The first several years clearly show that occupancy rates take time to increase. Even after the initial period, occupancy rates typically hover around 90%. This signifcantly cuts into the guru's projected rate of return.
+
+![boxplot](https://user-images.githubusercontent.com/47119252/52556231-9132d600-2db1-11e9-9abe-02b5c323db66.png)
+
 
 Now that we have determined that occupancy is far from 100%, our cleaned data set indicates that the square foot premium for green buildings is much lower than what the guru stated. After our process, we found that green buildings only command a $0.60/sq ft premium. This substantially increases the period required for a break-even return on investment. The following table shows the payoff over a span of 19 years.
 
