@@ -22,6 +22,8 @@ for (i in (1:dim(usairports)[1])) {
 ```
 
 ![unnamed-chunk-2-1](https://user-images.githubusercontent.com/47119252/52543816-4c3b7f00-2d72-11e9-8166-5b65b141af7b.png)
+Based on this illustration, it is easy to see that Austin services many cities around the country and even several countries. 
+
 
 **Direct flight connections**
 
@@ -41,6 +43,7 @@ for (j in 1:length(fsub$airport1)) {
 ```
 
 ![unnamed-chunk-1-2](https://user-images.githubusercontent.com/47119252/52543823-59f10480-2d72-11e9-9444-84afaa3db77f.png)
+This graphic illustrates several domestic destinations that Austin Bergstrom directly connects with. Common with most mid-sized airports, these nonstop connections are almost exclusive with major cities (mostly along the coasts).
 
 **Flight Delays**
 -----------------
@@ -52,6 +55,7 @@ IntoAustin
 ```
 
 ![intoaustin](https://user-images.githubusercontent.com/47119252/52543868-a63c4480-2d72-11e9-9ad4-b8b8ed72a179.png)
+For flights heading into Austin, San Antonio International Airport (SAT), McGhee Tyson Airport (TYS), and Birmigham-Shuttlesworth International Airport (BHM) were the top origins with the highest delays. It is difficult to pinpoint a common characteristic that would explain why those locations had longer delays. 
 
 **Heading out of Austin**
 
@@ -60,5 +64,7 @@ OutOfAustin
 ```
 
 ![outofaustin](https://user-images.githubusercontent.com/47119252/52543895-e0a5e180-2d72-11e9-90ff-2dfccf1bc9c7.png)
+For traffic heading out of Austin, the top three destinations are Norfolk International Airport (ORF), Des Moines International Airport (DSM), and Newark Liberty International Airport (EWR). Again, it is difficult to find a reason why this might be the case.
 
+Overall, average flight delays are much lower when leaving Austin than arriving. This is likely due to the fact that Austin is a destination "end point" and not a "transfer hub" for East-West (Chicago/Dallas) or North-South (DC/Charlotte) domestic traffic.
 
